@@ -1,4 +1,4 @@
-# Mini project with Databricks and Azure.
+# Mini project with Azure Databricks.
 
 The Ergast Developer API provides a historical record of motor racing data for non-commercial purposes. The API provides data for the Formula One series, from the beginning of the world championships in 1950.
 
