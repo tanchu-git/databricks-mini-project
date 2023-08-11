@@ -25,4 +25,6 @@ Finally, I created 3 ```External Locations```. One for each of my containers (``
 
 ![Screenshot 2023-08-11 171919](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/fe4ec567-0fff-44f1-a95c-fafe2b8c5b29)
 
-Now my Databricks workspace have all the neccessary permissions to work within the containers.
+Now my Databricks workspace have all the neccessary permissions to work with the containers.
+
+### Notebooks
