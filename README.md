@@ -47,7 +47,7 @@ Using ```dbutils.fs.ls``` to check I can actually access the containers.
 ```sql
 CREATE CATALOG IF NOT EXISTS example;
 ```
-Providing storage location path will store the managed tables in this schema in a location that is different than the catalog’s or metastore’s root storage location.
+Providing storage location path will store the *managed* tables in this schema in a location that is different than the catalog’s or metastore’s root storage location.
 ```sql
 CREATE { DATABASE | SCHEMA } [ IF NOT EXISTS ] <schema-name>
     [ MANAGED LOCATION '<location-path>' ];
@@ -56,7 +56,7 @@ Schemas are named after their respective external containers in Azure.
 
 ![Screenshot 2023-08-11 184635](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/28d65e10-e5ee-459f-8ccc-46af94d853bf)
 
-#### Third [notebook](https://github.com/tanchu-git/databricks_mini_project/blob/main/notebooks/3_create_bronze_tables.ipynb) creates external tables in bronze schema using -
+#### Third [notebook](https://github.com/tanchu-git/databricks_mini_project/blob/main/notebooks/3_create_bronze_tables.ipynb) creates *external* tables in bronze schema using -
 ```sql
 CREATE TABLE IF NOT EXISTS <catalog>.<schema>.<table-name>
 (
@@ -65,11 +65,11 @@ CREATE TABLE IF NOT EXISTS <catalog>.<schema>.<table-name>
 USING <format>
 LOCATION 'abfss://<bucket-path>/<table-directory>';
 ```
-When you run ```DROP TABLE``` on an external table, Unity Catalog does not delete the underlying data. Here we can see the tables type being external.
+When you run ```DROP TABLE``` on an *external* table, Unity Catalog does not delete the underlying data. Here we can see the tables type being external.
 
 ![Screenshot 2023-08-11 185001](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/b8460f56-18d0-4c88-9ff6-98dea3e39d3b)
 
-#### Fourth [notebook](https://github.com/tanchu-git/databricks_mini_project/blob/main/notebooks/4_create_silver_tables.ipynb) creates managed tables in silver schema using the external tables in bronze schema -
+#### Fourth [notebook](https://github.com/tanchu-git/databricks_mini_project/blob/main/notebooks/4_create_silver_tables.ipynb) creates *managed* tables in silver schema using the *external* tables in bronze schema -
 ```sql
 CREATE TABLE IF NOT EXISTS <catalog>.<schema>.<table-name>
 AS
@@ -77,7 +77,8 @@ SELECT
   <column>
 FROM <catalog>.<schema>.<table-name>;
 ```
-Managed tables in silver schema is stored in a Azure storage account. When a managed table is dropped, its underlying data is deleted from your cloud tenant within 30 days. 
+*Managed* tables in silver schema is stored in a Azure storage account. When a *managed* table is dropped, its underlying data is deleted from your cloud tenant within 30 days. 
 
 ![Screenshot 2023-08-11 194949](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/e87739dd-367d-4716-8297-ec24f17e6d6e)
 
+#### Last [notebook]()
