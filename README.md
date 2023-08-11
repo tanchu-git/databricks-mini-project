@@ -1,2 +1,2 @@
-# databricks_mini_project
-Mini project with Databricks and Azure.
+# Mini project with Databricks and Azure.
+Exploring and learning Databricks Unity Catalog.
