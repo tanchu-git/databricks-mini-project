@@ -10,9 +10,11 @@ Here's a [overview](https://github.com/tanchu-git/databricks_mini_project/assets
 ![Screenshot 2023-08-11 160806](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/70c2587a-d123-4090-87a0-a2dc905ecf46)
 
 ## Azure storage account, containers and access conecctor
-I will keep the dataset separate from Databricks, using storage account ```externalucstorage``` as external storage location, with 3 containers (```bronze```, ```silver``` and ```gold```).
+I will keep the dataset separate from Databricks, using storage account ```externalucstorage``` as the external storage location, with 3 containers (```bronze```, ```silver``` and ```gold```).
 
 ![Screenshot 2023-08-11 161039](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/629d5b9c-aec5-4f46-af69-7266542f1c76)
+
+```drivers.json``` and ```results.json``` will be uploaded to ```bronze``` container.
 
 ### Access Connector For Azure Databricks
 Databricks Unity Catalog can be configured to use an Azure managed identity to access storage containers in Azure. After creating a ```Access Connector For Azure Databricks``` in Azure portal, I assigned the role ```Storage Blob Data Contributor``` to the connector within ```externalucstorage``` storage account.
@@ -28,3 +30,13 @@ Finally, I created 3 ```External Locations```. One for each of my containers (``
 Now my Databricks workspace have all the neccessary permissions to work with the containers.
 
 ### Notebooks
+First [notebook](https://github.com/tanchu-git/databricks_mini_project/blob/main/notebooks/1_create_external_locations.ipynb) creates the external locations using - 
+```sql
+CREATE EXTERNAL LOCATION <location-name>
+ URL 'abfss://<container-name>@<storage-account>.dfs.core.windows.net/<path>'
+ WITH ([STORAGE] CREDENTIAL <storage-credential-name>);
+```
+Using ```dbutils.fs.ls``` to check I can actually access the containers.
+
+![Screenshot 2023-08-11 180118](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/6e02e3e6-9799-41a0-9305-3fbdf440fa46)
+
