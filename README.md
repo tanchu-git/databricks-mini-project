@@ -40,3 +40,15 @@ Using ```dbutils.fs.ls``` to check I can actually access the containers.
 
 ![Screenshot 2023-08-11 180118](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/6e02e3e6-9799-41a0-9305-3fbdf440fa46)
 
+#### Second [notebook](https://github.com/tanchu-git/databricks_mini_project/blob/main/notebooks/2_create_catalog_schema.ipynb) creates the Catalog and Schemas (databases) using -
+```sql
+CREATE CATALOG IF NOT EXISTS example;
+```
+```sql
+CREATE { DATABASE | SCHEMA } [ IF NOT EXISTS ] <schema-name>
+    [ MANAGED LOCATION '<location-path>' ];
+```
+
+#### Third [notebook]()
+
+
