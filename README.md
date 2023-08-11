@@ -2,7 +2,7 @@
 
 The Ergast Developer API provides a historical record of motor racing data for non-commercial purposes. The API provides data for the Formula One series, from the beginning of the world championships in 1950.
 
-I did some ingestion and data discovery work in the [demo folder](https://github.com/tanchu-git/databricks_mini_project/tree/main/demo), utilizing Unity Catalog in Azure Databricks workspace.
+I did some ingestion and dataset exploration work in the [demo folder](https://github.com/tanchu-git/databricks_mini_project/tree/main/demo), utilizing Unity Catalog in Azure Databricks workspace.
 
 ## [Ergast](http://ergast.com/mrd/) Formula One database
 Here's a [overview](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/876ca38e-569c-49d8-879e-ab99a9a2a504) of the database, with detailed attributes of the tables [here](http://ergast.com/docs/f1db_user_guide.txt). I will be using ```drivers``` and ```results``` tables, to find the dominant drivers.
