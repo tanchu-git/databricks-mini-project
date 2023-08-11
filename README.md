@@ -81,4 +81,5 @@ FROM <catalog>.<schema>.<table-name>;
 
 ![Screenshot 2023-08-11 194949](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/e87739dd-367d-4716-8297-ec24f17e6d6e)
 
-#### Last [notebook]()
+#### Last [notebook](https://github.com/tanchu-git/databricks_mini_project/blob/main/notebooks/5_create_gold_tables.ipynb) creates *managed* tables in gold schema with a simple ```JOIN``` clause and the results -
+![Screenshot 2023-08-11 210951](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/4d492de1-1c60-4d06-8cf6-f9a8162d0d5c)
