@@ -48,7 +48,28 @@ CREATE CATALOG IF NOT EXISTS example;
 CREATE { DATABASE | SCHEMA } [ IF NOT EXISTS ] <schema-name>
     [ MANAGED LOCATION '<location-path>' ];
 ```
+![Screenshot 2023-08-11 184635](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/28d65e10-e5ee-459f-8ccc-46af94d853bf)
 
-#### Third [notebook]()
+#### Third [notebook](https://github.com/tanchu-git/databricks_mini_project/blob/main/notebooks/3_create_bronze_tables.ipynb) creates external tables in bronze schema using -
+```sql
+CREATE TABLE IF NOT EXISTS <catalog>.<schema>.<table-name>
+(
+  <column-specification>
+)
+USING <format>
+LOCATION 'abfss://<bucket-path>/<table-directory>';
+```
+When you run ```DROP TABLE``` on an external table, Unity Catalog does not delete the underlying data. Here we can see the tables type being external.
 
+![Screenshot 2023-08-11 185001](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/b8460f56-18d0-4c88-9ff6-98dea3e39d3b)
 
+#### Fourth [notebook]() creates managed tables in silver schema using the external tables in bronze schema-
+```sql
+CREATE TABLE IF NOT EXISTS <catalog>.<schema>.<table-name>
+AS
+SELECT
+  <column>
+FROM <catalog>.<schema>.<table-name>;
+```
+
+When a managed table is dropped, its underlying data is deleted from your cloud tenant within 30 days.
