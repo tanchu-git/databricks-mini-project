@@ -15,4 +15,14 @@ I will keep the dataset separate from Databricks, using storage account ```exter
 ![Screenshot 2023-08-11 161039](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/629d5b9c-aec5-4f46-af69-7266542f1c76)
 
 ### Access Connector For Azure Databricks
-Databricks Unity Catalog can be configured to use an Azure managed identity to access storage containers in Azure. After creating one in Azure portal, I assigned the role ```Storage Blob Data Contributor``` to the connector within ```externalucstorage``` storage account.
+Databricks Unity Catalog can be configured to use an Azure managed identity to access storage containers in Azure. After creating a ```Access Connector For Azure Databricks``` in Azure portal, I assigned the role ```Storage Blob Data Contributor``` to the connector within ```externalucstorage``` storage account.
+
+Then a storage credential ```external_storage_cred```, using the ```Access connector ID``` is created in Databricks workspace. Now Databricks can connect and authenticate to ```externalucstorage``` via the connector.
+
+![Screenshot 2023-08-11 165447](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/83323ad6-9f3f-4fd7-99b1-6876181e7861)
+
+Finally, I created 3 ```External Locations```. One for each of my containers (```bronze```, ```silver``` and ```gold```), using their specific paths and ```external_storage_cred```.
+
+![Screenshot 2023-08-11 171919](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/fe4ec567-0fff-44f1-a95c-fafe2b8c5b29)
+
+Now my Databricks workspace have all the neccessary permissions to work within the containers.
