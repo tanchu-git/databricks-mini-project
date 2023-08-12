@@ -188,7 +188,13 @@ Result
 
 ![Screenshot 2023-08-11 210951](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/4d492de1-1c60-4d06-8cf6-f9a8162d0d5c)
 
-### Unity Catalog
-Unity Catalog automatically captures user-level audit logs that record access to your data. Unity Catalog also captures lineage data, which we can see here.
+### Workflow
+I made a workflow that triggers on file arrival in the ```bronze``` container in my storage account.
 
-![Screenshot 2023-08-11 213650](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/11f11ee8-8d86-416e-ae3e-5ada709de81c)
+![Screenshot 2023-08-12 131649](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/6d117b64-6ce1-4856-9449-c697cdcfb29b)
+
+
+### Data Lineage
+Unity Catalog automatically captures user-level audit logs that record access to your data. Unity Catalog also captures data lineage, which we can see here.
+
+![Screenshot 2023-08-12 132331](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/7dc03f8f-8586-4a77-8dcc-2d508c82b39b)
