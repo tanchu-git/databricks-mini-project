@@ -2,7 +2,7 @@
 
 The Ergast Developer API provides a historical record of motor racing data for non-commercial purposes. The API provides data for the Formula One series, from the beginning of the world championships in 1950.
 
-I did some ingestion and dataset exploration work in the [demo folder](https://github.com/tanchu-git/databricks_mini_project/tree/main/demo), utilizing Unity Catalog in Azure Databricks workspace.
+Using *Spark API*, data wrangling and ingestion can be found in the [demo folder](https://github.com/tanchu-git/databricks_mini_project/tree/main/demo).
 
 ## [Ergast](http://ergast.com/mrd/) Formula One database
 Here's a [overview](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/876ca38e-569c-49d8-879e-ab99a9a2a504) of the database, with detailed attributes of the tables [here](http://ergast.com/docs/f1db_user_guide.txt). I will be using ```drivers``` and ```results``` tables, to find the dominant drivers.
@@ -17,7 +17,7 @@ I've created a storage account ```externalucstorage``` as the external storage l
 
 ![Screenshot 2023-08-11 161039](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/629d5b9c-aec5-4f46-af69-7266542f1c76)
 
-```drivers.json``` and ```results.json``` will be uploaded to ```bronze``` container.
+```drivers.json``` and ```results.json``` will be ingested to ```bronze``` container.
 
 ### Access Connector For Azure Databricks
 Databricks Unity Catalog can be configured to use an Azure managed identity to access storage containers in Azure. After creating a ```Access Connector For Azure Databricks``` in Azure portal, I assigned the role ```Storage Blob Data Contributor``` to the connector within ```externalucstorage``` storage account.
@@ -33,7 +33,7 @@ Finally, 3 ```External Locations``` are created. One for each of my containers (
 Now my Databricks workspace have all the neccessary permissions to work with the containers.
 
 ### Notebooks
-#### First [notebook](https://github.com/tanchu-git/databricks_mini_project/blob/main/notebooks/1_create_external_locations.ipynb) creates the external locations for ```bronze```, ```silver``` and ```gold``` - 
+#### First [notebook](https://github.com/tanchu-git/databricks_mini_project/blob/main/notebooks/1_create_external_locations.ipynb) creates the external locations for ```bronze```, ```silver``` and ```gold```. 
 ```sql
 CREATE EXTERNAL LOCATION external_storage_bronze
  URL 'abfss://bronze@externalucstorage.dfs.core.windows.net/'
@@ -49,11 +49,11 @@ CREATE EXTERNAL LOCATION external_storage_gold
  URL 'abfss://gold@externalucstorage.dfs.core.windows.net/'
  WITH (STORAGE CREDENTIAL external_storage_cred);
 ```
-Using ```dbutils.fs.ls``` to check I can actually access the containers.
+Using ```dbutils.fs.ls``` to check access to the containers.
 
 ![Screenshot 2023-08-11 180118](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/6e02e3e6-9799-41a0-9305-3fbdf440fa46)
 
-#### Second [notebook](https://github.com/tanchu-git/databricks_mini_project/blob/main/notebooks/2_create_catalog_schema.ipynb) creates the Catalog (```formula1_dev```) and Schemas (```bronze```, ```silver``` and ```gold```) -
+#### Second [notebook](https://github.com/tanchu-git/databricks_mini_project/blob/main/notebooks/2_create_catalog_schema.ipynb) creates the Catalog (```formula1_dev```) and Schemas (```bronze```, ```silver``` and ```gold```).
 ```sql
 CREATE CATALOG IF NOT EXISTS formula1_dev;
 ```
@@ -74,7 +74,7 @@ Schemas are named after their respective external containers in Azure.
 
 ![Screenshot 2023-08-11 184635](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/28d65e10-e5ee-459f-8ccc-46af94d853bf)
 
-#### Third [notebook](https://github.com/tanchu-git/databricks_mini_project/blob/main/notebooks/3_create_bronze_tables.ipynb) creates *external* table ```drivers``` and ```results``` in bronze schema -
+#### Third [notebook](https://github.com/tanchu-git/databricks_mini_project/blob/main/notebooks/3_create_bronze_tables.ipynb) creates *external* table ```drivers``` and ```results``` in bronze schema.
 ```sql
 DROP TABLE IF EXISTS formula1_dev.bronze.drivers;
 
@@ -123,7 +123,7 @@ When you run ```DROP TABLE``` on an *external* table, Unity Catalog does not del
 
 ![Screenshot 2023-08-11 185001](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/b8460f56-18d0-4c88-9ff6-98dea3e39d3b)
 
-#### Fourth [notebook](https://github.com/tanchu-git/databricks_mini_project/blob/main/notebooks/4_create_silver_tables.ipynb) creates *managed* tables in silver schema using the *external* tables in bronze schema with some light transformation -
+#### Fourth [notebook](https://github.com/tanchu-git/databricks_mini_project/blob/main/notebooks/4_create_silver_tables.ipynb) creates *managed* tables in silver schema using the *external* tables in bronze schema with some light transformation.
 ```sql
 DROP TABLE IF EXISTS formula1_dev.silver.drivers;
 
@@ -171,7 +171,7 @@ FROM formula1_dev.bronze.results;
 
 ![Screenshot 2023-08-11 194949](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/e87739dd-367d-4716-8297-ec24f17e6d6e)
 
-#### Last [notebook](https://github.com/tanchu-git/databricks_mini_project/blob/main/notebooks/5_create_gold_tables.ipynb) creates *managed* table ```driver_wins``` in gold schema with a simple ```JOIN``` clause -
+#### Last [notebook](https://github.com/tanchu-git/databricks_mini_project/blob/main/notebooks/5_create_gold_tables.ipynb) creates *managed* table ```driver_wins``` in gold schema with a simple ```JOIN``` clause.
 ```sql
 DROP TABLE IF EXISTS formula1_dev.gold.driver_wins;
 
@@ -184,8 +184,11 @@ SELECT d.name, count(1) as number_of_wins
   WHERE r.position = 1
 GROUP BY d.name;
 ```
+Result
+
 ![Screenshot 2023-08-11 210951](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/4d492de1-1c60-4d06-8cf6-f9a8162d0d5c)
 
 ### Unity Catalog
-Unity Catalog automatically captures user-level audit logs that record access to your data. Unity Catalog also captures lineage data, which we can see here - 
+Unity Catalog automatically captures user-level audit logs that record access to your data. Unity Catalog also captures lineage data, which we can see here.
+
 ![Screenshot 2023-08-11 213650](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/11f11ee8-8d86-416e-ae3e-5ada709de81c)
