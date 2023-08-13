@@ -11,7 +11,7 @@ The Ergast Developer API provides a historical record of motor racing data for n
 ## Databricks workspace, Azure storage account and access connector
 First step is creating a Databricks Workspace through Azure portal. Unity Catalog Metastore needs to be created by navigating to [manage account](https://accounts.azuredatabricks.net/) page. I will need to configure a storage container and Azure managed identity that Unity Catalog can use to store and access managed table data. Then, assign my Databricks workspace to the metastore.
 
-I've created a storage account ```externalucstorage``` as the external storage location. Since I plan to create 3 schemas (databases) with Unity Catalog, I will keep them separately stored in 3 containers (```bronze```, ```silver``` and ```gold```).
+I have created a storage account ```externalucstorage``` as the external storage location. Since I plan to create 3 schemas (databases) with Unity Catalog, I will keep them separately stored in 3 containers (```bronze```, ```silver``` and ```gold```).
 
 ![Screenshot 2023-08-11 161039](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/629d5b9c-aec5-4f46-af69-7266542f1c76)
 
