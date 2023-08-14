@@ -9,4 +9,4 @@ To reference secrets stored in an Azure Key Vault, a secret scope is created her
 
 ![Screenshot 2023-08-14 220022](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/94d47b25-9207-44cf-bfbd-e83320f34bf4)
 
-Input necessary Azure Key Vault properties, I can then leverage all of the secrets in the corresponding Key Vault instance, using - ```dbutils.secrets.get(<scope-name>, <secret-key>)```.
+Input necessary Azure Key Vault properties, I can then leverage all of the secrets in the corresponding Key Vault instance, using - ```dbutils.secrets.get(<scope-name>, <secret-key>)```. Now I can mount a Azure storage account using an Azure Active Directory (Azure AD) application service principal for authentication.
