@@ -1,6 +1,6 @@
 # Mini project with Azure Databricks.
 
-Using *Spark API*, data wrangling and ingestion can be found in the [setup folder](https://github.com/tanchu-git/databricks_mini_project/tree/main/setup).
+Using *Spark API*, data discovery and ingestion can be found in the [setup folder](https://github.com/tanchu-git/databricks_mini_project/tree/main/setup).
 
 ## [Ergast](http://ergast.com/mrd/) Formula One database
 The Ergast Developer API provides a historical record of motor racing data for non-commercial purposes. The API provides data for the Formula One series, from the beginning of the world championships in 1950. Here's a [overview](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/876ca38e-569c-49d8-879e-ab99a9a2a504) of the database, with detailed attributes of the tables [here](http://ergast.com/docs/f1db_user_guide.txt). I will be using ```drivers``` and ```results``` tables, to find the dominant drivers.
