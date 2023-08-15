@@ -165,7 +165,7 @@ SELECT
   current_timestamp() AS ingestion_date
 FROM formula1_dev.bronze.results;
 ```
-*Managed* tables in silver schema is stored in a Azure storage account. When a *managed* table is dropped, its underlying data is deleted from your cloud tenant within 30 days. 
+*Managed* tables in silver schema are stored in a Azure storage account. When a *managed* table is dropped, its underlying data is deleted from your cloud tenant within 30 days. 
 
 ![Screenshot 2023-08-11 194949](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/e87739dd-367d-4716-8297-ec24f17e6d6e)
 
