@@ -1,5 +1,4 @@
 # Mini project with Azure Databricks.
-
 Using *PySpark*, data discovery and ingestion can be found in the [discovery folder](https://github.com/tanchu-git/databricks_mini_project/tree/main/discovery).
 
 ## [Ergast](http://ergast.com/mrd/) Formula One database
