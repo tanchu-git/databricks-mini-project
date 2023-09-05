@@ -4,7 +4,7 @@ Using *PySpark*, data discovery and ingestion can be found in the [discovery fol
 ## [Ergast](http://ergast.com/mrd/) Formula One database
 The Ergast Developer API provides a historical record of motor racing data for non-commercial purposes. The API provides data for the Formula One series, from the beginning of the world championships in 1950. Here's a [overview](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/876ca38e-569c-49d8-879e-ab99a9a2a504) of the database, with detailed attributes of the tables [here](http://ergast.com/docs/f1db_user_guide.txt). I will be using ```drivers``` and ```results``` tables, to find the dominant drivers.
 
-## Architecture overview
+## Solution Architecture
 ![Screenshot 2023-08-11 160806](https://github.com/tanchu-git/databricks_mini_project/assets/139019601/70c2587a-d123-4090-87a0-a2dc905ecf46)
 
 ## Databricks workspace, Azure storage account and access connector
